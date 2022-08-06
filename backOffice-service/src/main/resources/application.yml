@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: back-office-service
+server:
+  port: 8888
+services:
+  extern:
+    employee-service:
+      url: localhost:8082/employee-service/api/
+    leave-service:
+      url: localhost:8083/leave-service/api/
+

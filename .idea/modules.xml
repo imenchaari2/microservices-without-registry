@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/registry-eureka/eureka-service.iml" filepath="$PROJECT_DIR$/registry-eureka/eureka-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway-service/gateway-service.iml" filepath="$PROJECT_DIR$/gateway-service/gateway-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leave-service/leave-service.iml" filepath="$PROJECT_DIR$/leave-service/leave-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/stage 2eme.iml" filepath="$PROJECT_DIR$/.idea/stage 2eme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/employee-service/testLeave.iml" filepath="$PROJECT_DIR$/employee-service/testLeave.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,14 @@
+server:
+  port: 8086
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: leave-Service
+  debug: true
+services:
+  extern:
+    EMPLOYEE-SERVICE:
+      baseUrl: https://localhost:8082/api/employee
+
+

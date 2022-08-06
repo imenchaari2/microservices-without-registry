@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="leave-service" />
+        <module name="eureka-service" />
+        <module name="testLeave" />
+        <module name="gateway-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eureka-service" target="17" />
+      <module name="gateway-service" target="16" />
+      <module name="leave-service" target="17" />
+      <module name="testLeave" target="16" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka-service" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
+      <module name="leave-service" options="-parameters" />
+      <module name="testLeave" options="-parameters" />
+    </option>
+  </component>
+</project>
