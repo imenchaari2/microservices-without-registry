@@ -24,7 +24,6 @@ public class LeaveService {
 
     private final MongoTemplate mongoTemplate;
     private final LeaveRepository leaveRepository;
-
     private final EmployeeProxy employeeProxy;
 
     public LeaveService(MongoTemplate mongoTemplate, LeaveRepository leaveRepository, EmployeeProxy employeeProxy) {
@@ -62,13 +61,10 @@ public class LeaveService {
         return leave;
     }
 
-
     public void deleteLeave(String id) {
        Leave leave = this.findLeaveById(id);
         leaveRepository.delete(leave);
     }
-
-
     public List<Leave> getAllLeaves() {
         return leaveRepository.findAll();
     }

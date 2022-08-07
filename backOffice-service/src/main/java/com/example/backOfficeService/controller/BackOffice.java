@@ -24,6 +24,7 @@ public class BackOffice {
     public ResponseEntity<List<Employee>> getAllEmployees() {
         return employeeProxy.getAllEmployees();
     }
+
     @GetMapping("/employee-service/api/archived")
     public ResponseEntity<List<Employee>> getAllArchivedEmployees() {
         return employeeProxy.getAllArchivedEmployees();
@@ -36,12 +37,12 @@ public class BackOffice {
 
     @PostMapping("/employee-service/api/add")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
-       return employeeProxy.addEmployee(employee);
+        return employeeProxy.addEmployee(employee);
     }
 
     @PutMapping("/employee-service/api/update")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
-       return employeeProxy.updateEmployee(employee);
+        return employeeProxy.updateEmployee(employee);
     }
 
     @DeleteMapping("/employee-service/api/delete/{id}")
@@ -56,33 +57,34 @@ public class BackOffice {
 
     @DeleteMapping("/employee-service/api/restore/{id}")
     public ResponseEntity<?> restoreEmployee(@PathVariable("id") String id) {
-       return employeeProxy.restoreEmployee(id);
+        return employeeProxy.restoreEmployee(id);
     }
 
     // leave service apis
 
-    @GetMapping(value = "/find/{leaveId}")
+    @GetMapping(value = "/leave-service/api/find/{leaveId}")
     public Leave getLeaveById(@PathVariable String leaveId) {
         return leaveProxy.getLeaveById(leaveId);
     }
 
-    @PostMapping("/{employeeId}/addLeave")
+    @PostMapping("/leave-service/api/{employeeId}/addLeave")
     public ResponseEntity<Leave> addLeave(@RequestBody Leave leave, @PathVariable String employeeId) {
-        return leaveProxy.addLeave(leave,employeeId);
+        return leaveProxy.addLeave(leave, employeeId);
     }
 
-    @GetMapping(value = "/{employeeId}/Leaves")
+    @GetMapping(value = "/leave-service/api/{employeeId}/Leaves")
     public ResponseEntity<List<Leave>> getAllLeavesByEmployee(@PathVariable String employeeId) {
         return leaveProxy.getAllLeavesByEmployee(employeeId);
     }
-    @DeleteMapping(value = "/deleteLeave/{leaveId}")
+
+    @DeleteMapping(value = "/leave-service/api/deleteLeave/{leaveId}")
     public ResponseEntity<?> deleteLeave(@PathVariable("leaveId") String leaveId) {
         return leaveProxy.deleteLeave(leaveId);
     }
-//    @PutMapping("/updateLeave")
-//    public ResponseEntity<Leave> updateLeave(@RequestBody Leave leave) {
-//        Leave updatedLeave = leaveService.updateLeave(leave);
-//        return new ResponseEntity<>(updatedLeave, HttpStatus.OK);
-//    }
+
+    @PutMapping("/leave-service/api/updateLeave")
+    public ResponseEntity<Leave> updateLeave(@RequestBody Leave leave) {
+        return leaveProxy.updateLeave(leave);
+    }
 
 }

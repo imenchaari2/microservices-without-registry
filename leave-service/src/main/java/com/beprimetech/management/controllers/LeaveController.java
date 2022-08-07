@@ -1,10 +1,7 @@
 package com.beprimetech.management.controllers;
 
-import com.beprimetech.management.models.EmployeeBean;
 import com.beprimetech.management.models.Leave;
-import com.beprimetech.management.proxies.EmployeeProxy;
 import com.beprimetech.management.services.LeaveService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +12,13 @@ import java.util.List;
 @RequestMapping(path = "/leave-service/api/")
 public class LeaveController {
 
-    LeaveService leaveService;
-    EmployeeProxy employeeProxy;
+    private final LeaveService leaveService;
 
-//    @GetMapping(value = "/allEmployees")
+    public LeaveController(LeaveService leaveService) {
+        this.leaveService = leaveService;
+    }
+
+    //    @GetMapping(value = "/allEmployees")
 //    public ResponseEntity<List<EmployeeBean>> getEmployees() {
 //        return employeeProxy.getAllEmployees();
 //    }
@@ -47,11 +47,11 @@ public class LeaveController {
         leaveService.deleteLeave(leaveId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-//    @PutMapping("/updateLeave")
-//    public ResponseEntity<Leave> updateLeave(@RequestBody Leave leave) {
-//        Leave updatedLeave = leaveService.updateLeave(leave);
-//        return new ResponseEntity<>(updatedLeave, HttpStatus.OK);
-//    }
+    @PutMapping("/updateLeave")
+    public ResponseEntity<Leave> updateLeave(@RequestBody Leave leave) {
+        Leave updatedLeave = leaveService.updateLeave(leave);
+        return new ResponseEntity<>(updatedLeave, HttpStatus.OK);
+    }
 
 
 }
