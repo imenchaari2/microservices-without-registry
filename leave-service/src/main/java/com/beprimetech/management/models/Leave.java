@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.query.Update;
 
 import java.time.LocalDate;
+import java.util.Objects;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,5 +36,21 @@ public class Leave {
     private String reasonLeave;
     private String leaveReasonArea;
     private LeaveState leaveStateLeave;
+
+
+    public Update updateLeave(Leave leave) {
+        if (Objects.isNull(leave)) {
+            return null;
+        }
+        Update update = new Update();
+        update.set("nbDaysLeave",leave.getNbDaysLeave());
+        update.set("reasonLeave",leave.getReasonLeave());
+        update.set("departureDate",leave.getDepartureDate());
+        update.set("returnDate",leave.getReturnDate());
+        update.set("leaveReasonArea",leave.getLeaveReasonArea());
+        update.set("leaveStateLeave",leave.getLeaveStateLeave());
+        return update;
+    }
+
 
 }

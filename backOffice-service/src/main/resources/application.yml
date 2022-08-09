@@ -2,7 +2,7 @@ spring:
   application:
     name: back-office-service
 server:
-  port: 8888
+  port: 8889
 services:
   extern:
     employee-service:

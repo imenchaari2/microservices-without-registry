@@ -19,6 +19,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 @Slf4j
 @Service
@@ -58,14 +59,7 @@ public class LeaveService {
     public Leave updateLeave (Leave leave) {
         Query query = new Query();
         query.addCriteria(Criteria.where("leaveId").is(leave.getLeaveId()));
-        Update update = new Update();
-        update.set("creationDate",leave.getCreationDate());
-        update.set("nbDaysLeave",leave.getNbDaysLeave());
-        update.set("reasonLeave",leave.getReasonLeave());
-        update.set("departureDate",leave.getDepartureDate());
-        update.set("returnDate",leave.getReturnDate());
-        update.set("leaveReasonArea",leave.getLeaveReasonArea());
-        update.set("leaveStateLeave",leave.getLeaveStateLeave());
+        Update update = leave.updateLeave(leave);
         mongoTemplate.updateFirst(query, update, Leave.class);
         return findLeaveById(leave.getLeaveId());
     }
