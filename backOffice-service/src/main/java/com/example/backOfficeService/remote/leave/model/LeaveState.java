@@ -1,4 +1,4 @@
-package com.example.backOfficeService.beans;
+package com.example.backOfficeService.remote.leave.model;
 
 public enum LeaveState {
     NONE,

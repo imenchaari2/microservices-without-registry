@@ -1,6 +1,7 @@
-package com.example.backOfficeService.beans;
+package com.example.backOfficeService.remote.leave.model;
 
 
+import com.example.backOfficeService.remote.employee.model.Employee;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.annotation.Id;

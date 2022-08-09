@@ -1,4 +1,4 @@
-package com.example.backOfficeService.beans;
+package com.example.backOfficeService.remote.employee.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.example.backOfficeService.proxies;
+package com.example.backOfficeService.remote.employee;
 
 
-import com.example.backOfficeService.beans.Employee;
+import com.example.backOfficeService.remote.employee.model.Employee;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient(name = "employee-service" , url = "${services.extern.employee-service.url}")
-    public interface EmployeeProxy {
+    public interface EmployeeClient {
     @GetMapping("/all")
     ResponseEntity<List<Employee>> getAllEmployees();
     @GetMapping("/archived")

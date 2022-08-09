@@ -1,7 +1,7 @@
-package com.example.backOfficeService.proxies;
+package com.example.backOfficeService.remote.leave;
 
 
-import com.example.backOfficeService.beans.Leave;
+import com.example.backOfficeService.remote.leave.model.Leave;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient(name = "leave-service" , url = "${services.extern.leave-service.url}")
-    public interface LeaveProxy {
+    public interface LeaveClient {
     @GetMapping(value = "/find/{leaveId}")
     Leave getLeaveById(@PathVariable String leaveId);
     @PostMapping("/{employeeId}/addLeave")
