@@ -6,8 +6,12 @@ import com.beprimetech.management.models.Leave;
 import com.beprimetech.management.models.LeaveState;
 import com.beprimetech.management.proxies.EmployeeProxy;
 import com.beprimetech.management.repository.LeaveRepository;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.UpdateResult;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
+import org.bson.Document;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -25,7 +29,6 @@ public class LeaveService {
     private final MongoTemplate mongoTemplate;
     private final LeaveRepository leaveRepository;
     private final EmployeeProxy employeeProxy;
-
     public LeaveService(MongoTemplate mongoTemplate, LeaveRepository leaveRepository, EmployeeProxy employeeProxy) {
         this.mongoTemplate = mongoTemplate;
         this.leaveRepository = leaveRepository;
@@ -56,16 +59,22 @@ public class LeaveService {
         Query query = new Query();
         query.addCriteria(Criteria.where("leaveId").is(leave.getLeaveId()));
         Update update = new Update();
+        update.set("creationDate",leave.getCreationDate());
+        update.set("nbDaysLeave",leave.getNbDaysLeave());
+        update.set("reasonLeave",leave.getReasonLeave());
+        update.set("departureDate",leave.getDepartureDate());
+        update.set("returnDate",leave.getReturnDate());
+        update.set("leaveReasonArea",leave.getLeaveReasonArea());
+        update.set("leaveStateLeave",leave.getLeaveStateLeave());
         mongoTemplate.updateFirst(query, update, Leave.class);
-        leave = findLeaveById(leave.getLeaveId());
-        return leave;
+        return findLeaveById(leave.getLeaveId());
     }
 
-    public void deleteLeave(String id) {
-       Leave leave = this.findLeaveById(id);
+    public void deleteLeave(String leaveId) {
+       Leave leave = this.findLeaveById(leaveId);
         leaveRepository.delete(leave);
     }
-    public List<Leave> getAllLeaves() {
-        return leaveRepository.findAll();
-    }
+//    public List<Leave> getAllLeavesEnAttente() {
+//        return leaveRepository.findAll(leaveRepository.findLeaveByLeaveStateLeave(LeaveState.EN_ATTENTE));
+//    }
 }
